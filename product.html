@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Elevate Visiom — Product</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div id="brandName">Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a class="pill-link" href="login.html">🔐 Login</a>
+        <a class="chip" id="waBtn" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </nav>
+    </header>
+
+    <section class="section glass">
+      <div class="section-head">
+        <div>
+          <h2 id="pTitle">Product</h2>
+          <p>Rs. <span id="pPrice">1000</span></p>
+        </div>
+        <a class="chip" href="products.html">← Back</a>
+      </div>
+
+      <div class="hero" style="grid-template-columns: 0.95fr 1.05fr;">
+        <div class="glass-soft" style="padding:14px;">
+          <div class="thumb" style="height:280px;">
+            <img id="pImg" alt="product image"/>
+          </div>
+        </div>
+
+        <div class="glass-soft" style="padding:14px;">
+          <div class="chip">⭐ Popular</div>
+          <p class="sub" id="pDesc" style="margin-top:10px;">Description</p>
+
+          <div class="notice">
+            <strong>Email required</strong> at checkout ✅  
+            WhatsApp message auto load වෙනවා — proof screenshot attach කරලා send කරන්න.
+          </div>
+
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn primary" id="buyBtn" href="checkout.html">🧾 Checkout</a>
+            <a class="btn ghost" href="products.html">Browse more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="firebase.js" type="module"></script>
+  <script src="app.js"></script>
+</body>
+</html>

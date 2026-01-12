@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="si">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register — Elevate Visiom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div>Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a class="pill-link" href="login.html">🔐 Login</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="auth-shell">
+        <div class="auth-left glass">
+          <div class="chip">✨ Secure account • Email verification</div>
+          <h1 class="h-title">Create your account</h1>
+          <p class="h-sub">
+            Register කරපු ගමන් verification email එකක් එයි.
+            Verify කරලා පස්සේ checkout කරන්න පුළුවන් ✅
+          </p>
+
+          <div class="badges">
+            <div class="badge">
+              <div class="icon">📩</div>
+              <div>
+                <b>Email required</b><br />
+                <span>Delivery & order updates</span>
+              </div>
+            </div>
+            <div class="badge">
+              <div class="icon">🧾</div>
+              <div>
+                <b>WhatsApp checkout</b><br />
+                <span>Attach payment proof & send</span>
+              </div>
+            </div>
+            <div class="badge">
+              <div class="icon">⚡</div>
+              <div>
+                <b>Fast access</b><br />
+                <span>Quick delivery after confirm</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="notice" style="margin-top:14px;">
+            <strong>Tip:</strong> Inbox / Spam වල verification mail එක බලන්න.  
+            Verify කරලා <a href="verify.html" style="text-decoration:underline;">Verify page</a> එකට ආවම status එක update වෙනවා.
+          </div>
+        </div>
+
+        <div class="auth-right glass">
+          <div class="chip">✅ Register</div>
+          <div class="divider"></div>
+
+          <div class="field">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+              <label>Email</label>
+              <span class="req">⭐ Required</span>
+            </div>
+            <div class="input">
+              <div class="icon">✉️</div>
+              <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+            <div class="hint">We use this to deliver your purchase.</div>
+          </div>
+
+          <div class="field">
+            <label>Password</label>
+            <div class="input">
+              <div class="icon">🔒</div>
+              <input id="pw" type="password" placeholder="Min 6 characters" minlength="6" autocomplete="new-password" />
+            </div>
+            <div class="hint">Use a strong password.</div>
+          </div>
+
+          <div class="row-actions">
+            <button class="btn primary block" id="btn">Create account & send verification</button>
+            <a class="btn ghost block" href="login.html">Already have an account</a>
+          </div>
+
+          <p class="small-muted" style="margin-top:12px;">
+            Firebase config set කරලා නැත්නම් Register/Login work වෙන්නේ නෑ.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="firebase.js" type="module"></script>
+  <script type="module">
+    const toast = (m)=>{ const t=document.getElementById("toast"); t.textContent=m; t.style.display="block"; clearTimeout(window.__t); window.__t=setTimeout(()=>t.style.display="none", 2400); };
+
+    document.getElementById("btn").addEventListener("click", async (e)=>{
+      e.preventDefault();
+      if(!window.__EV){ toast("Firebase config දාන්න ඕන ✅"); return; }
+
+      const email = document.getElementById("email").value.trim();
+      const pw = document.getElementById("pw").value;
+
+      if(!email){ toast("Email එක අනිවාර්යයි ✅"); document.getElementById("email").focus(); return; }
+      if(!pw || pw.length < 6){ toast("Password එක අඩුම 6 characters ✅"); document.getElementById("pw").focus(); return; }
+
+      try{
+        const { auth, createUserWithEmailAndPassword, sendEmailVerification } = window.__EV;
+        const cred = await createUserWithEmailAndPassword(auth, email, pw);
+        await sendEmailVerification(cred.user);
+        toast("Verification email එක යවලා ✅ Inbox/Spam check කරන්න");
+        setTimeout(()=> location.href="verify.html", 900);
+      }catch(err){
+        toast(err?.message || "Error");
+      }
+    });
+  </script>
+</body>
+</html>

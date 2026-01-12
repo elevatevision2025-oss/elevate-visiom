@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Elevate Visiom — Checkout</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body data-require-verified="true">
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div id="brandName">Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a class="pill-link" href="verify.html">✅ Verify</a>
+        <a class="chip" id="waBtn" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </nav>
+    </header>
+
+    <section class="section glass">
+      <div class="section-head">
+        <div>
+          <h2>Checkout</h2>
+          <p>Email required • Proof attach on WhatsApp</p>
+        </div>
+        <div class="chip">🔒 Verified users only</div>
+      </div>
+
+      <div class="hero" style="grid-template-columns: 1fr 1fr;">
+        <div class="glass-soft" style="padding:14px;">
+          <div class="chip">🛍️ Your order</div>
+          <h3 id="coTitle" style="margin:12px 0 6px;">Product</h3>
+          <p style="margin:0;color:var(--muted);">Price: <b style="color:var(--text)">Rs. <span id="coPrice">1000</span></b></p>
+
+          <div class="notice" style="margin-top:12px;">
+            <strong>Important:</strong> Proof image එක website එකෙන් WhatsAppට auto attach කරන්න බෑ.  
+            WhatsApp open වුණාම <strong>payment proof screenshot</strong> attach කරලා send කරන්න ✅
+          </div>
+        </div>
+
+        <div class="glass-soft" style="padding:14px;">
+          <div class="chip">✍️ Customer details</div>
+
+          <div class="form">
+            <div>
+              <label>Your name (optional)</label>
+              <input id="name" placeholder="Your name"/>
+            </div>
+
+            <div>
+              <label>Email (required)</label>
+              <input id="email" type="email" placeholder="you@example.com" required/>
+              <div class="notice" style="margin-top:8px;">
+                ✅ <strong>Email required</strong> — purchase deliver කරන්න සහ order update යවන්න.
+              </div>
+            </div>
+
+            <div>
+              <label>Payment proof (optional preview)</label>
+              <input id="proof" type="file" accept="image/*"/>
+              <div id="preview" style="margin-top:10px;"></div>
+            </div>
+
+            <div>
+              <label>Note (optional)</label>
+              <textarea id="note" placeholder="Any note for the seller..."></textarea>
+            </div>
+
+            <button class="btn primary" id="sendWA" type="button">💬 Send to WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="firebase.js" type="module"></script>
+  <script src="app.js"></script>
+</body>
+</html>

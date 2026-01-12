@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "dp-001",
+      "title": "Digital Product 01",
+      "price": 1000,
+      "category": "Digital",
+      "desc": "Short description here (Edit in /admin).",
+      "image": "https://picsum.photos/seed/elevate1/900/600"
+    },
+    {
+      "id": "dp-002",
+      "title": "Digital Product 02",
+      "price": 1000,
+      "category": "Digital",
+      "desc": "Short description here (Edit in /admin).",
+      "image": "https://picsum.photos/seed/elevate2/900/600"
+    },
+    {
+      "id": "dp-003",
+      "title": "Digital Product 03",
+      "price": 1000,
+      "category": "Digital",
+      "desc": "Short description here (Edit in /admin).",
+      "image": "https://picsum.photos/seed/elevate3/900/600"
+    }
+  ]
+}

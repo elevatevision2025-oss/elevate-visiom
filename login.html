@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="si">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login — Elevate Visiom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div>Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a class="pill-link" href="register.html">✨ Register</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="auth-shell">
+        <div class="auth-left glass">
+          <div class="chip">🔐 Verified users only</div>
+          <h1 class="h-title">Welcome back</h1>
+          <p class="h-sub">Login කරලා products browse කරලා checkout කරන්න.</p>
+
+          <div class="notice" style="margin-top:14px;">
+            <strong>Note:</strong> Email verify කරලා නැත්තම්, login පස්සේ
+            <a href="verify.html" style="text-decoration:underline;">Verify page</a> එකට යවලා verify complete කරගන්න.
+          </div>
+        </div>
+
+        <div class="auth-right glass">
+          <div class="chip">✅ Login</div>
+          <div class="divider"></div>
+
+          <div class="field">
+            <label>Email</label>
+            <div class="input">
+              <div class="icon">✉️</div>
+              <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Password</label>
+            <div class="input">
+              <div class="icon">🔒</div>
+              <input id="pw" type="password" placeholder="••••••••" autocomplete="current-password" />
+            </div>
+          </div>
+
+          <div class="row-actions">
+            <button class="btn primary block" id="btn">Login</button>
+            <a class="btn ghost block" href="verify.html">Check verification</a>
+          </div>
+
+          <p class="small-muted" style="margin-top:12px;">
+            Firebase config set කරලා නැත්නම් Login work වෙන්නේ නෑ.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="firebase.js" type="module"></script>
+  <script type="module">
+    const toast = (m)=>{ const t=document.getElementById("toast"); t.textContent=m; t.style.display="block"; clearTimeout(window.__t); window.__t=setTimeout(()=>t.style.display="none", 2400); };
+
+    document.getElementById("btn").addEventListener("click", async (e)=>{
+      e.preventDefault();
+      if(!window.__EV){ toast("Firebase config දාන්න ඕන ✅"); return; }
+
+      const email = document.getElementById("email").value.trim();
+      const pw = document.getElementById("pw").value;
+
+      if(!email){ toast("Email එක දාන්න ✅"); document.getElementById("email").focus(); return; }
+      if(!pw){ toast("Password එක දාන්න ✅"); document.getElementById("pw").focus(); return; }
+
+      try{
+        const { auth, signInWithEmailAndPassword } = window.__EV;
+        const cred = await signInWithEmailAndPassword(auth, email, pw);
+
+        if(!cred.user.emailVerified){
+          toast("Email verify කරලා නැහැ ⏳ Verify කරන්න");
+          location.href = "verify.html";
+          return;
+        }
+
+        toast("Login success ✅");
+        location.href = "products.html";
+      }catch(err){
+        toast(err?.message || "Error");
+      }
+    });
+  </script>
+</body>
+</html>

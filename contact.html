@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Elevate Visiom — Contact</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div id="brandName">Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a class="pill-link" href="register.html">✨ Register</a>
+        <a class="chip" id="waBtn" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </nav>
+    </header>
+
+    <section class="section glass">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p>Fastest support via WhatsApp</p>
+        </div>
+        <div class="chip">📞 078 546 6276</div>
+      </div>
+
+      <div class="hero" style="grid-template-columns: 1fr 1fr;">
+        <div class="glass-soft" style="padding:14px;">
+          <div class="chip">💬 WhatsApp</div>
+          <div class="notice" style="margin-top:12px;">
+            Any questions? product choose කරන්න help ඕනද?  
+            WhatsApp message එකක් දාන්න.
+          </div>
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn primary" id="waBig" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+            <a class="btn ghost" href="products.html">Browse products</a>
+          </div>
+        </div>
+
+        <div class="glass-soft" style="padding:14px;">
+          <div class="chip">📌 Order Note</div>
+          <div class="notice" style="margin-top:12px;">
+            Checkout වලදී email එක අනිවාර්යයි ✅  
+            WhatsApp open වුණාම payment proof screenshot attach කරලා send කරන්න.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const WA="94785466276";
+    const msg=encodeURIComponent("Hi! I need help with Elevate Visiom products.");
+    document.addEventListener("DOMContentLoaded", ()=>{
+      document.getElementById("waBig").href=`https://wa.me/${WA}?text=${msg}`;
+    });
+  </script>
+
+  <script src="firebase.js" type="module"></script>
+  <script src="app.js"></script>
+</body>
+</html>

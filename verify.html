@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="si">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Verify — Elevate Visiom</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div>Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a class="pill-link" href="login.html">🔐 Login</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <section class="auth-shell">
+        <div class="auth-left glass">
+          <div class="chip" id="statusChip">Checking…</div>
+          <h1 class="h-title">Verify your email</h1>
+          <p class="h-sub">
+            Verification email එකේ link එක click කරලා, මෙතැන refresh කරන්න.
+          </p>
+
+          <div class="notice" id="msg" style="margin-top:14px;">
+            Inbox / Spam වල “Verify your email” mail එක බලන්න.
+          </div>
+        </div>
+
+        <div class="auth-right glass">
+          <div class="chip">✅ Actions</div>
+          <div class="divider"></div>
+
+          <div class="row-actions">
+            <button class="btn primary block" id="refresh">🔄 Refresh status</button>
+            <a class="btn ghost block" href="products.html">Browse products</a>
+          </div>
+
+          <div class="notice" style="margin-top:12px;">
+            Verify උනාම checkout වලදී <strong>Email required</strong> flow එක smoothly යයි ✅
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="firebase.js" type="module"></script>
+  <script type="module">
+    const toast = (m)=>{ const t=document.getElementById("toast"); t.textContent=m; t.style.display="block"; clearTimeout(window.__t); window.__t=setTimeout(()=>t.style.display="none", 2400); };
+
+    const chip = document.getElementById("statusChip");
+    const msg = document.getElementById("msg");
+
+    async function check(){
+      if(!window.__EV){
+        chip.textContent = "Firebase not set";
+        msg.innerHTML = "Firebase config (`firebase.js`) දාන්න ඕන. ඒක දාලා පස්සේ verify check කරන්න ✅";
+        return;
+      }
+
+      const { auth, onAuthStateChanged, reload } = window.__EV;
+
+      onAuthStateChanged(auth, async (user)=>{
+        if(!user){
+          chip.textContent = "Not logged in";
+          msg.innerHTML = `Verify status බලන්න login වෙන්න. <a href="login.html" style="text-decoration:underline;">Login</a>`;
+          return;
+        }
+
+        await reload(user);
+
+        if(user.emailVerified){
+          chip.textContent = "✅ Verified";
+          msg.innerHTML = "Perfect! Email verified ✅ දැන් checkout කරන්න පුළුවන්.";
+          toast("Email verified ✅");
+        }else{
+          chip.textContent = "⏳ Not verified";
+          msg.innerHTML = "Still not verified. Email එකේ verify link එක click කරලා නැවත refresh කරන්න.";
+        }
+      });
+    }
+
+    document.getElementById("refresh").addEventListener("click", async ()=>{
+      await check();
+      toast("Status refreshed");
+    });
+
+    check();
+  </script>
+</body>
+</html>

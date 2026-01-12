@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Elevate Visiom — Products</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav glass">
+      <div class="brand"><div class="dot"></div><div id="brandName">Elevate Visiom</div></div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+        <a class="pill-link" href="login.html">🔐 Login</a>
+        <a class="chip" id="waBtn" target="_blank" rel="noreferrer">💬 WhatsApp</a>
+      </nav>
+    </header>
+
+    <section class="section glass">
+      <div class="section-head">
+        <div>
+          <h2>Digital Products</h2>
+          <p>All items Rs. 1000 • Add/edit via <span style="text-decoration:underline;">/admin</span></p>
+        </div>
+        <div class="chip">📸 Images included</div>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <footer>© 2026 Elevate Visiom</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="firebase.js" type="module"></script>
+  <script src="app.js"></script>
+</body>
+</html>
