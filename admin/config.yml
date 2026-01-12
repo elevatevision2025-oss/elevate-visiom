@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "store"
+    label: "Store"
+    files:
+      - name: "products"
+        label: "Products"
+        file: "products.json"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Price (LKR)", name: "price", widget: "number", value_type: "int", default: 1000 }
+              - { label: "Category", name: "category", widget: "string", default: "Digital" }
+              - { label: "Description", name: "desc", widget: "text" }
+              - { label: "Cover Image", name: "image", widget: "image" }
